@@ -1,0 +1,25 @@
+
+ .header{
+  margin:10rpx 0;
+}
+ .header .title{
+  font-size: 24rpx;
+  font-weight: 300;
+  color:gray;
+  margin-left: 10rpx;
+}
+ .header .context{
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  margin: 0 10rpx;
+}
+ .header .context .more{
+   font-size:20rpx;
+   /* font-weight: 300; */
+   line-height: 30rpx;
+   height: 30rpx;
+   border: 1rpx black solid;
+   border-radius: 18rpx;
+   padding: 6rpx 20rpx ;
+}

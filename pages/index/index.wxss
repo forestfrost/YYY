@@ -1,0 +1,121 @@
+.indexContainer{
+  height: 100%;
+  width: 100%;
+}
+.banner{
+  height:300rpx;
+}
+.banner image {
+  width: 100%;
+  height: 100%;
+}
+.navContainer{
+  display: flex;
+}
+.nav-item{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.nav-item .des {
+  text-align: center;
+  font-size: 26rpx;
+}
+.nav-item .iconfont{
+ font-size: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  background-color: rgb(199,24,24);
+  border-radius: 50%;
+  color:white;
+  margin: 20rpx auto;
+}
+.recommendContainer{
+  padding: 20rpx 0;
+  margin: 10rpx auto;
+  /* height: 300rpx; */
+}
+
+.scrollView-recommend{
+
+  display: flex;
+  height: 260rpx;
+  margin-top: 20rpx;
+  /* justify-content: flex-start; */
+}
+.recommendContainer .scrollView-recommend .scrollItem{
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0rpx 15rpx 0 10rpx;
+}
+.recommendContainer .scrollView-recommend .scrollItem image{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 20rpx;
+
+}
+.recommendContainer  .scrollView-recommend .scrollItem text{
+  font-size: 24rpx;
+  /* 单行文本溢出设置 */
+  width: 200rpx;
+  /* text-align: center; */
+  /* display: block;
+  /* 多余内容使用省略号代替 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; */
+  /* 多行文本溢出设置 */
+  overflow: hidden;
+  text-overflow:ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical ;
+  -webkit-line-clamp: 2;
+}
+.topContainer{
+  padding: 10rpx 0;
+  margin: 10rpx auto;
+}
+.scrollView-top{
+  margin: 20rpx auto;
+  display: flex;
+  height: 500rpx;
+   background-color: rgba(241, 238, 238,0.4);
+}
+.scrollView-top .scrollItem{
+  flex: 0 0 640rpx;
+  margin: 20rpx 20rpx;
+}
+.scrollView-top .scrollItem .showBlock{
+  position: relative;
+  display: flex;
+  margin: 20rpx 20rpx;
+  height: 120rpx;
+}
+.scrollView-top .scrollItem .showBlock image{
+ position: absolute;
+ top:50%;
+transform: translateY(-50%);
+  width:120rpx;
+  height:120rpx;
+  border-radius: 15rpx;
+}
+
+.scrollView-top .scrollItem .showBlock .name{
+  line-height: 120rpx;
+  position: absolute;
+  left:200rpx;
+  display: block;
+  width: 400rpx;
+  text-align:center;
+  font-size: 28rpx;
+  
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

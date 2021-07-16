@@ -1,0 +1,59 @@
+<view class="indexContainer">
+  <swiper class="banner" autoplay="{{true}}" indicator-dots="{{true}}" indicator-color="ivory" indicator-active-color="#d34c33"
+ >
+ <!-- 小程序地key值不用item.key 直接写key即可，他会自动到遍历的数组元素中找到相应的key作为标签的唯一key -->
+    <swiper-item  wx:for="{{banners}}" wx:key="bannerId">
+      <image src="{{item.pic}}"></image>
+    </swiper-item>
+  </swiper>
+  <view class="navContainer">
+    <view class="nav-item">
+      <text class="iconfont icon-shouye"></text>
+      <text class="des ">每日推荐</text>
+    </view>
+    <view class="nav-item">
+      <text class="iconfont icon-gedan"></text>
+      <text class="des">歌单</text>
+    </view>
+    <view class="nav-item">
+      <text class="iconfont icon-paihangbang"></text>
+      <text class="des">排行榜</text>
+    </view>
+    <view class="nav-item">
+      <text class="iconfont icon-diantai"></text>
+      <text class="des">电台</text>
+    </view>
+    <view class="nav-item">
+      <text class="iconfont icon-zhibo"></text>
+      <text class="des">直播</text>
+    </view>
+  </view>
+  <view class="recommendContainer">
+  <!-- 头部 -->
+   <NavHeader title="推荐歌曲" nav="为您精心推荐"></NavHeader>
+    <!-- 内容区域 -->
+    <!-- scroll-view 必须设置高度，且若要使用flex布局需要开启flex，向哪个方向滚动需要设置scrooll-x 或 scroll-y -->
+    <scroll-view class="scrollView-recommend" enable-flex scroll-x>
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="encodeId" wx:for-item="recommendListItem">
+        <image src="{{recommendListItem.picUrl}}"></image>
+        <text>{{recommendListItem.name}}</text>
+      </view>
+      
+    </scroll-view>
+  </view>
+  <view class="topContainer">
+   <NavHeader title="排行榜" nav="top"></NavHeader>
+    <scroll-view class="scrollView-top" scroll-x enable-flex>
+    <view class="scrollItem" wx:for="{{toplist}}" wx:key="id" wx:for-item="listItem">
+      <text style="font-size:28rpx">{{listItem.name}}></text>
+      <view class="showBlock" wx:for="{{listItem.list}}" wx:for-item="detail" wx:key="id" wx:for-index="detailIndex">
+        <image src="{{detail.al.picUrl}}"></image>
+        <text class="name">{{detail.name}}</text>
+        
+      </view>
+      
+    </view>
+   
+    </scroll-view>
+  </view>
+</view>
