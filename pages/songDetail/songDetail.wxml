@@ -1,0 +1,16 @@
+<view class="songDetailContainer">
+  <view class="author">{{songDetail.ar[0].name}}</view>
+  <view class="circle"></view>
+  <image class="needle {{isPlay &&'needleRotate'}}" src="../../static/images/song/needle.png"></image>
+  <view class="descContainer">
+    <image class="disc" src="/static/images/song/disc.png"></image>
+    <image class="musicImg {{isPlay?'musicImgRotate':''}}" src="{{songDetail.al.picUrl}}"></image>
+  </view>
+  <view class="musicControl">
+    <text class="iconfont icon-suijibofang"></text>
+    <text class="iconfont icon-shangyishoushangyige"></text>
+    <text class="iconfont big  {{isPlay?'icon-zantingtingzhi':'icon-16'}}" bindtap="playSong"></text>
+    <text class="iconfont icon-xiayigexiayishou"></text>
+    <text class="iconfont icon-gedan1"></text>
+  </view>
+</view>

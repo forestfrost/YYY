@@ -1,8 +1,12 @@
 {
   "pages": [
+   
     "pages/index/index",
+    "pages/recommendSong/recommendSong",
+    "pages/video/video",
     "pages/personal/personal",
-    "pages/video/video"
+    "pages/login/login",
+    "pages/songDetail/songDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -36,5 +40,6 @@
     "backgroundColor": "#fff"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes":["audio"]
 }

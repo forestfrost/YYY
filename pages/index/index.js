@@ -11,7 +11,31 @@ Page({
    topList:[],//排行榜
    
   },
-
+  playThisSong:function(event){
+    // console.log(event.currentTarget)
+     wx.navigateTo({
+       url: '/pages/songDetail/songDetail',
+       success:function(res){
+         res.eventChannel.emit("songDetailInfo",{info:event.currentTarget.dataset.info})
+       }
+     })
+   },
+  handleToRecommendSong:function(){
+    if(!wx.getStorageSync('cookie')){
+      wx.showToast({
+        title: '请先登录',
+      })
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+      }, 500);
+      return ;
+    }
+    wx.navigateTo({
+      url: '/pages/recommendSong/recommendSong',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

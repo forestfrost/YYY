@@ -1,0 +1,70 @@
+.recommendSongContainer .headImg {
+  width: 100%;
+  height: 300rpx;
+  position: relative;
+}
+.recommendSongContainer .headImg image {
+  width: 100%;
+  height: 100%;
+}
+.recommendSongContainer .headImg .text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+.recommendSongContainer .headImg .text .left {
+  font-size: 42rpx;
+}
+.recommendSongContainer .headImg .text .center {
+  font-size: 42rpx;
+  padding: 0 20rpx;
+}
+.recommendSongContainer .headImg .text .right {
+  font-size: 30rpx;
+}
+.recommendSongContainer .header {
+  height: 60rpx;
+  line-height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+.recommendSongContainer .header .left {
+  margin-left: 20rpx;
+}
+.recommendSongContainer .header .right {
+  margin-right: 20rpx;
+}
+.recommendSongContainer .content {
+  padding: 0 20rpx;
+  height: calc(100vh - 360rpx);
+}
+.recommendSongContainer .content .item {
+  display: flex;
+  margin: 15rpx 0;
+}
+.recommendSongContainer .content .item image {
+  margin: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+}
+.recommendSongContainer .content .item .des {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.recommendSongContainer .content .item .des text {
+  margin-left: 24rpx;
+  font-size: 28rpx;
+}
+.recommendSongContainer .content .item .share {
+  text-align: center;
+  line-height: 80rpx;
+  padding: 10rpx;
+  flex: 0 0 80rpx;
+}

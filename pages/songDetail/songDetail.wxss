@@ -1,0 +1,87 @@
+@keyframes myRotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.songDetailContainer {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.songDetailContainer .author {
+  color: #fff;
+}
+.songDetailContainer .needle {
+  position: relative;
+  top: -40rpx;
+  left: 60rpx;
+  width: 192rpx;
+  height: 274rpx;
+  z-index: 2001;
+  transform-origin: 5% 5%;
+  transform: rotate(-30deg);
+  transition: 1s;
+}
+.songDetailContainer .needleRotate {
+  transform: rotate(0deg);
+}
+.songDetailContainer .circle {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 10rpx 0;
+  position: relative;
+  z-index: 2002;
+}
+.songDetailContainer .descContainer {
+  z-index: 2000;
+  position: relative;
+  top: -170rpx;
+  width: 598rpx;
+  height: 598rpx;
+}
+.songDetailContainer .descContainer .disc {
+  width: 598rpx;
+  height: 598rpx;
+}
+.songDetailContainer .descContainer .musicImg {
+  width: 370rpx;
+  height: 370rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.songDetailContainer .descContainer .musicImgRotate {
+  animation: myRotate 6s 1s linear infinite;
+}
+.songDetailContainer .musicControl {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  border-top: 1rpx solid #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.songDetailContainer .musicControl text {
+  width: 20rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 50rpx;
+}
+.songDetailContainer .musicControl .big {
+  transform: translateX(-20rpx);
+  font-size: 100rpx;
+}

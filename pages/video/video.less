@@ -1,0 +1,110 @@
+.videoContainer{
+    .header{
+        display: flex;
+        padding: 10rpx;
+        image{
+            width: 60rpx;
+            height: 60rpx;
+        }
+        .search{
+            flex:1;
+            text-align: center;
+            border: 1rpx solid #eee;
+            margin: 0 20rpx;
+            font-size: 26rpx;
+            line-height: 60rpx;
+            color:#d43c33;
+        }
+    }
+    .navScrollContainer{
+        display: flex;
+        white-space: nowrap;
+        height: 80rpx;
+       // margin-bottom: 10rpx;
+        .navItem{
+            padding: 0 30rpx;
+            font-size: 28rpx;
+            height: 60rpx;
+            line-height: 60rpx;
+           .active{
+               border-bottom: #d43c33 solid 2rpx;
+           }
+        }
+    }
+    .videoScroll{
+        // 视口单位 vh&vw 1vh = 1%视口高度 1vw=1%视口宽度 注意运算符必须由空格隔开，否则计算失效
+       height: calc(100vh - 152rpx);
+        .videoItem{
+            padding:10rpx 3%;
+            //padding: 10rpx 0;
+            border-bottom:1rpx solid #eee;
+            margin:20rpx 0;
+            .title{
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                padding:20rpx 0;
+                display: block;
+                font-size: 26rpx;
+            }
+           video{
+               height: 360rpx;
+               width: 100%;
+           }
+           .common{
+            height: 360rpx;
+            width: 100%;
+           }
+           .footer{
+               overflow: auto;
+               .avatar{
+                   width: 60rpx;
+                   height: 60rpx;
+                   border-radius: 50%;
+                   float: left;
+               }
+               .nickName{
+                font-size: 26rpx;
+                line-height: 60rpx;
+                margin-left:20rpx;
+               }
+               .comments_praised{
+                   float:right;
+                   .item{
+                       
+                      margin-left: 80rpx;
+                      position: relative;
+                      width: 60rpx;
+                      text{
+                          font-size: 26rpx;
+                      }
+                      .count{
+                          display: block;
+                          font-size: 20rpx;
+                          position: absolute;
+                          left:24rpx;
+                          top:-10rpx;
+                      }
+                   }
+                   .item.btn{
+                    display: inline;
+                    padding: 0;
+                    background-color: transparent;
+                    border-color: transparent;
+                   // position:relative;
+                    text{
+                        position:absolute;
+                        right:20rpx;
+                        top:10rpx;
+                    }
+                   }
+               }
+           }
+        }
+    }
+    .err{
+        display: block;
+        text-align: center;
+        font-size: 26rpx;
+    }
+}

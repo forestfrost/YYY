@@ -7,8 +7,8 @@
     </swiper-item>
   </swiper>
   <view class="navContainer">
-    <view class="nav-item">
-      <text class="iconfont icon-shouye"></text>
+    <view class="nav-item" bindtap="handleToRecommendSong">
+      <text class="iconfont icon-biaoqiankuozhan_tuijian-126"></text>
       <text class="des ">每日推荐</text>
     </view>
     <view class="nav-item">
@@ -46,7 +46,7 @@
     <scroll-view class="scrollView-top" scroll-x enable-flex>
     <view class="scrollItem" wx:for="{{toplist}}" wx:key="id" wx:for-item="listItem">
       <text style="font-size:28rpx">{{listItem.name}}></text>
-      <view class="showBlock" wx:for="{{listItem.list}}" wx:for-item="detail" wx:key="id" wx:for-index="detailIndex">
+      <view class="showBlock" wx:for="{{listItem.list}}" wx:for-item="detail" wx:key="id" wx:for-index="detailIndex" data-info="{{detail}}" bindtap="playThisSong">
         <image src="{{detail.al.picUrl}}"></image>
         <text class="name">{{detail.name}}</text>
         
