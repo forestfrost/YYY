@@ -1,5 +1,9 @@
 App({
-
+  globalData:{
+    isMusicPlay:false,//是否有音乐正在播放
+    songIdPlaying:"",//记录正在播放的音乐的id
+    playStatus:-1,//记录当前播放方式 
+  },
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */

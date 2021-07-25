@@ -13,10 +13,11 @@ Page({
   },
   playThisSong:function(event){
     // console.log(event.currentTarget)
+    let topList = event.currentTarget.dataset.songlist;
      wx.navigateTo({
        url: '/pages/songDetail/songDetail',
        success:function(res){
-         res.eventChannel.emit("songDetailInfo",{info:event.currentTarget.dataset.info})
+         res.eventChannel.emit("songDetailInfo",{info:event.currentTarget.dataset.info,songList:topList})
        }
      })
    },
@@ -60,10 +61,10 @@ Page({
       axios('get',`/playlist/detail`,{id:data.list[i].id}).then(res=>{
        // console.log(res.playlist.tracks.slice(0,3))
        results.push({id:data.list[i].id,name:data.list[i].name,list:res.playlist.tracks.slice(0,3)});
-       this.setData({toplist:results})
+       this.setData({topList:results})
       })
      }
-    this.setData({toplist:results});
+    this.setData({topList:results});
    })
   },
 

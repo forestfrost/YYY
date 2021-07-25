@@ -12,10 +12,11 @@ Page({
   },
   playThisSong:function(event){
    // console.log(event.currentTarget)
+   var that= this;
     wx.navigateTo({
       url: '/pages/songDetail/songDetail',
       success:function(res){
-        res.eventChannel.emit("songDetailInfo",{info:event.currentTarget.dataset.info})
+        res.eventChannel.emit("songDetailInfo",{info:event.currentTarget.dataset.info,songList:that.data.recommendSongList.data.dailySongs})
       }
     })
   },

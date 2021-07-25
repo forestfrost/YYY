@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2678900 */
-  src: url('//at.alicdn.com/t/font_2678900_mmqumi4q0op.woff2?t=1627031076738') format('woff2'),
-       url('//at.alicdn.com/t/font_2678900_mmqumi4q0op.woff?t=1627031076738') format('woff'),
-       url('//at.alicdn.com/t/font_2678900_mmqumi4q0op.ttf?t=1627031076738') format('truetype');
+  src: url('//at.alicdn.com/t/font_2678900_pvp8kofj8yr.woff2?t=1627211142360') format('woff2'),
+       url('//at.alicdn.com/t/font_2678900_pvp8kofj8yr.woff?t=1627211142360') format('woff'),
+       url('//at.alicdn.com/t/font_2678900_pvp8kofj8yr.ttf?t=1627211142360') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,30 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-02:before {
+  content: "\e602";
+}
+
+.icon-aixin:before {
+  content: "\e60f";
+}
+
+.icon-delete:before {
+  content: "\e630";
+}
+
+.icon-qingkong:before {
+  content: "\e611";
+}
+
+.icon-hanhan-01-01:before {
+  content: "\e6ae";
+}
+
+.icon-liebiaoxunhuan:before {
+  content: "\e6a2";
 }
 
 .icon-16:before {

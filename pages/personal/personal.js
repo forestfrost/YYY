@@ -74,10 +74,12 @@ Page({
   },
   playThisSong:function(event){
     // console.log(event.currentTarget)
+    let recentList=this.data.recentPlayList;
+    recentList= recentList.map(item=>item.song)
      wx.navigateTo({
        url: '/pages/songDetail/songDetail',
-       success:function(res){
-         res.eventChannel.emit("songDetailInfo",{info:event.currentTarget.dataset.info.song})
+       success:(res)=>{
+         res.eventChannel.emit("songDetailInfo",{info:event.currentTarget.dataset.info.song,songList:recentList})
        }
      })
    },

@@ -6,11 +6,48 @@
     <image class="disc" src="/static/images/song/disc.png"></image>
     <image class="musicImg {{isPlay?'musicImgRotate':''}}" src="{{songDetail.al.picUrl}}"></image>
   </view>
+  <view class="progressControl">
+    <text>{{currentTime.minutes<10?'0'+currentTime.minutes:currentTime.minutes}}:{{currentTime.seconds<10?'0'+currentTime.seconds:currentTime.seconds}}</text>
+    <!-- 总进度条 -->
+    <view class="barControl">
+      <!-- 实时进度条 -->
+      <view class="audio-currentTime-Bar" style="width:{{distance}}rpx"></view>
+      <view class="ball" style="left:{{distance}}rpx"></view>
+    </view>
+    <text>{{totalTime.minutes<10?'0'+totalTime.minutes:totalTime.minutes}}:{{totalTime.seconds<10?'0'+totalTime.seconds:totalTime.seconds}}</text>
+  </view>
   <view class="musicControl">
-    <text class="iconfont icon-suijibofang"></text>
-    <text class="iconfont icon-shangyishoushangyige"></text>
+    <text class="iconfont {{playStatus==0?'icon-liebiaoxunhuan': (playStatus == 1 ? 'icon-suijibofang' : 'icon-hanhan-01-01')}}" bindtap="changePlayStatus"></text>
+    <text class="iconfont icon-shangyishoushangyige" bindtap="handleSwitch" id="prev"></text>
     <text class="iconfont big  {{isPlay?'icon-zantingtingzhi':'icon-16'}}" bindtap="playSong"></text>
-    <text class="iconfont icon-xiayigexiayishou"></text>
-    <text class="iconfont icon-gedan1"></text>
+    <text class="iconfont icon-xiayigexiayishou" bindtap="handleSwitch" id="next"></text>
+    <text class="iconfont icon-gedan1" bindtap="showSongList"></text>
   </view>
 </view>
+<!-- 遮罩层 ，显示音乐播放列表 -->
+<page-container show="{{show}}" round='{{true}}' overlay="{{true}}" duration='{{300}}' position="bottom" custom-style="height: 80%;z-index:2005;background-color:rgba(0,0,0,0.0)" close-on-slideDown='{{true}}' z-index="{{2005}}" overlay-style='background-color: rgba(0,0,0,0.8)'
+bindafterleave="closePageContainer" bindclickoverlay="closePageContainer" bindbeforeenter="onBeforeEnter">
+  <view class="songListContainer">
+    <view class="pageContainerHeader">
+      <text>当前播放</text>
+      <view class="handleBlock">
+        <text class="iconfont {{playStatus==0?'icon-liebiaoxunhuan': (playStatus == 1 ? 'icon-suijibofang' : 'icon-hanhan-01-01')}} left" bindtap="changePlayStatus">
+         <text style="font-size:24rpx;line-height:80rpx;height:80rpx;"> {{playStatus==0?'列表循环': (playStatus == 1 ? '随机播放' : '单曲循环')}}</text>
+        </text>
+        <view class="right">
+          <!-- <text bindtap="collectAllSong">收藏全部</text> -->
+          <!-- <text class="iconfont clear icon-qingkong"></text> -->
+        </view>
+        
+      </view>
+    </view>
+    <scroll-view scroll-y class="songItemContainer" enhanced="{{true}}" show-scrollbar="{{false}}" scroll-into-view="scroll{{songDetail.id}}">
+      <view class="songItem {{songDetail.id === item.id?'playing':''}}" wx:for="{{songList}}" wx:key="id" bindtap="playThisSongInList" data-info="{{item}}" 
+      id="{{'scroll'+item.id}}">
+        <text class="songName">{{item.name}}</text>
+        <!-- <text class="iconfont {{item.id}}"></text> -->
+      </view>
+     
+    </scroll-view>
+  </view>
+</page-container>
