@@ -75,13 +75,16 @@
 .songDetailContainer .progressControl .barControl {
   position: relative;
   width: 450rpx;
+  top:30rpx;
   height: 4rpx;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.0);
+  border-top:4rpx solid rgba(0, 0, 0, 0.5);
+  padding: 30rpx;
   margin: auto;
 }
 .songDetailContainer .progressControl .barControl .audio-currentTime-Bar {
   position: absolute;
-  top: 0;
+  top: -4rpx;
   left: 0;
   width: 0rpx;
   z-index: 1;
@@ -90,12 +93,13 @@
   margin: auto;
 }
 .songDetailContainer .progressControl .barControl .ball {
+  content: "";
   position: absolute;
   width: 12rpx;
   height: 12rpx;
   border-radius: 50%;
   background-color: #fff;
-  top: -4rpx;
+  top: -8rpx;
   left: 0rpx;
 }
 .songDetailContainer .musicControl {

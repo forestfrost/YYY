@@ -7,6 +7,18 @@ const debounce = function(fn,delay){
     }, delay);
   }
 }
+const throttle = function(fn,delay){
+  var flag = true;
+  return function(){
+    if(!flag) return;
+    flag  = false;
+    setTimeout(() => {
+      fn.call(this,...arguments);
+      flag=true;
+    }, delay);
+  }
+}
 export {
-  debounce
+  debounce,
+  throttle
 }

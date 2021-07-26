@@ -1,0 +1,41 @@
+var startX = 0
+var left = 0;
+var lastLeft = 0;
+var width = 0;
+
+function touchstart(event, ins) {
+
+  var touch = event.touches[0] || event.changedTouches[0]
+  startX = touch.clientX
+  lastLeft =startX;
+  ins.callMethod('handleTouchStart', {
+    complete: function (res) {
+      console.log('args', res)
+    }
+  })
+}
+
+function touchmove(event, ins) {
+  var touch = event.touches[0] || event.changedTouches[0]
+  var pageX = touch.clientX
+   left = pageX - startX +lastLeft;
+   startX= pageX;
+   lastLeft = left;
+  if (left > 450) {
+    left = 450;
+  } else if (left < 0) left = 0;
+  ins.selectComponent('.ball').setStyle({
+    left: left + 'rpx',
+  })
+}
+function touchend(event,ins){
+  ins.selectComponent('.ball').setStyle({})
+  ins.callMethod("handleTouchEnd",{
+    event:event
+  })
+}
+module.exports = {
+  touchstart: touchstart,
+  touchmove: touchmove,
+  touchend:touchend
+}

@@ -1,3 +1,4 @@
+
 import {
   axios
 } from '../../utils/request'
@@ -14,32 +15,20 @@ Page({
     song: null, //歌曲的url相关信息
     songList: [], //歌曲列表
     playStatus: 0, //当前播放方式 ：0，列表循环 1，随机播放 2，单曲循环
-    totalTime:null,//当前歌曲的总时长
-    currentTime:{
-      minutes:0,
-      seconds:0
-    },//当前歌曲已经播放的时长(min:sec)
-    currentTimeByMSec:0,//当前歌曲已经播放的时长：以毫秒做单位
-    distance:0,//进度条的长度 与小球与左侧的距离
-    timer:null,//当前页面设置的定时器
+    totalTime: null, //当前歌曲的总时长
+    currentTime: {
+      minutes: 0,
+      seconds: 0
+    }, //当前歌曲已经播放的时长(min:sec)
+    distance: 0, //进度条的长度 与小球与左侧的距离
+    canMove:false,//进度条的小球是否可滑动的标识，
   },
-  // 重置已经播放的时长
-  resetCurrentTime:function(){
-    this.setData({
-      currentTimeByMSec:0,
-      currentTime:{
-        minutes:0,
-        seconds:0,
-      }
-    })
-  },
-
   // 时间换算工具类
-  totalTimeToRealTime:function(time){
-    let res  =parseInt(time / 1000);
+  totalTimeToRealTime: function (time) {
+    let res = parseInt(time );
     let minutes = parseInt(res / 60);
-    let seconds = res - minutes*60;
-    return{
+    let seconds = res - minutes * 60;
+    return {
       minutes,
       seconds
     }
@@ -63,13 +52,15 @@ Page({
             title: '暂时没有版权',
           })
           let currentId = appInstance.globalData.songIdPlaying;
-          let songDetail= this.data.songList.find(item=>item.id === currentId);
-          let realTime=this.totalTimeToRealTime(songDetail.dt)
+          let songDetail = this.data.songList.find(item => item.id === currentId);
+          // let realTime=this.totalTimeToRealTime(songDetail.dt)
           this.setData({
             songDetail,
-            totalTime:realTime,
-           
+            // totalTime:realTime,
           })
+          // 跳转到下一首
+          this.getNextSong("next");
+          this.playSong();
           return;
         }
       } catch (e) {
@@ -110,8 +101,8 @@ Page({
     )
     // 上一首
     if (type === "prev") {
-      currentIndex = (currentIndex - 1+ songList.length) % songList.length ;
-     // console.log(currentIndex)
+      currentIndex = (currentIndex - 1 + songList.length) % songList.length;
+      // console.log(currentIndex)
     }
     // 下一首
     else if (type === "next") {
@@ -119,19 +110,23 @@ Page({
     }
     // 随机播放
     else {
-      currentIndex = (currentIndex + parseInt(Math.random() * songList.length))% songList.length
+      currentIndex = (currentIndex + parseInt(Math.random() * songList.length)) % songList.length
     }
     audioManager.stop();
-    let realTime=this.totalTimeToRealTime(songList[currentIndex].dt)
+    let realTime;
+    if(audioManager.duration)
+     realTime = this.totalTimeToRealTime(audioManager.duration)
+    else{
+      realTime = this.totalTimeToRealTime(0);
+    }
     this.setData({
       songDetail: songList[currentIndex],
-      totalTime:realTime,
+      totalTime: realTime,
       song: null,
     })
   },
   // 切换歌曲的回调函数
   handleSwitch: function (event) {
-   this.resetCurrentTime();
     let type = event.currentTarget.id;
     this.getNextSong(type);
     // 歌曲详情已经修改，需要触发播放事件才能播放
@@ -152,12 +147,11 @@ Page({
   },
   // 在播放列表选择某一首歌曲进行播放
   playThisSongInList: function (event) {
-  this.resetCurrentTime();
     let songDetail = event.currentTarget.dataset.info;
-    let realTime=this.totalTimeToRealTime(songDetail.dt)
+    let realTime = this.totalTimeToRealTime(songDetail.dt)
     this.setData({
       songDetail,
-      totalTime:realTime,
+      totalTime: realTime,
       song: null,
     })
     this.playSong();
@@ -176,6 +170,67 @@ Page({
     })
     appInstance.globalData.playStatus = playStatus;
   },
+  // 触摸小球的回调事件，将小球放大两倍，并放开小球的触摸滑动权限，而且要暂停音乐播放进度的监听
+  handleTouchStart:function(){
+    var audioManager = wx.getBackgroundAudioManager();
+    audioManager.onTimeUpdate(()=>{});
+    this.setData({
+      canMove:true,
+    })
+  },
+  // // 小球的触摸滑动事件，根据手指的位置设置小球的位置，
+  // handleTouchMove:throttle(function(event){
+  //   // 利用单例模式获取触摸小球时的distance
+  //   // if(!this.distance){
+  //   //   this.distance = this.data.distance;
+  //   // }
+  //   if(this.data.canMove){
+  // //    console.log(event);
+  //     this.setData({
+  //       distance:event.changedTouches[0].clientX
+  //     })
+  //   }
+  // },50),
+  // //手指离开屏幕，根据小球的位置，计算应该跳转到的相应时间点，播放音乐，并继续音乐播放进度的监听
+  handleTouchEnd:function(event){
+    event=event.event;
+    var audioManager = wx.getBackgroundAudioManager();
+    let distance = event.currentTarget.offsetLeft;
+    let width =0;
+    let time
+     wx.createSelectorQuery().select('.barControl').boundingClientRect().exec(res=>{
+      width=res[0].width;
+      time= distance/width*audioManager.duration;
+       audioManager.seek(time)
+    })
+   
+    audioManager.onTimeUpdate(()=>{
+      this.setData({
+        totalTime:this.totalTimeToRealTime(audioManager.duration),
+        currentTime: this.totalTimeToRealTime(audioManager.currentTime ),
+        distance: audioManager.currentTime / audioManager.duration * 450,
+      })
+    })
+    this.setData({
+      canMove:false,
+    })
+
+  },
+  handleTap:function(event){
+    console.log(event)
+    var audioManager = wx.getBackgroundAudioManager();
+    let distance = event.detail.x-event.currentTarget.offsetLeft;
+    let width =0;
+    let time
+   var query=  wx.createSelectorQuery()
+   query.select('.barControl').boundingClientRect();
+   query.select("#leftTime").boundingClientRect();
+   query.exec(res=>{
+      width=res[0].width;
+      time= (distance-res[1].width)/width*audioManager.duration;
+       audioManager.seek(time)
+    })
+  },
   //收藏当前播放列表的所有歌曲
   // collectAllSong:function(){
 
@@ -184,31 +239,53 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取背景音乐控制器
+    let audioManager = wx.getBackgroundAudioManager();
+    // 重新进入页面时,得到当前播放的时长,并设置进度条
+    
+    if(audioManager.currentTime)
+    this.setData({
+      currentTime: this.totalTimeToRealTime(audioManager.currentTime ),
+      distance: audioManager.currentTime / audioManager.duration * 450,
+    })
+    else{
+      this.setData({
+        currentTime: this.totalTimeToRealTime(0),
+        distance: 0,
+      })
+    }
     // 获取父页面传来的需要播放的歌曲信息与播放列表
     const eventChannel = this.getOpenerEventChannel()
-    var timer=null;
+    var flag = false;
     eventChannel.on('songDetailInfo', (data) => {
-      // console.log(data)
       wx.setNavigationBarTitle({
         title: data.info.name
       });
-      let realTime=this.totalTimeToRealTime(data.info.dt)
+      let realTime;
+      if(audioManager.duration)
+       realTime = this.totalTimeToRealTime(audioManager.duration)
+      else{
+        realTime = this.totalTimeToRealTime(0);
+      }
       this.setData({
         songDetail: data.info,
-        totalTime:realTime,
+        totalTime: realTime,
         songList: data.songList
       })
       if (data.info.id == appInstance.globalData.songIdPlaying) {
+        // 当单曲循环或者该歌曲未播放完毕时
         this.setData({
           isPlay: appInstance.globalData.isMusicPlay,
         })
+        flag = true;
       }
-      this.playSong();
+      if (!flag) {
+        this.playSong();
+      }
     })
     //  设置背景音乐控制器的播放、暂停、停止回调函数，并且根据当前播放的音乐id与 当前页显示的音乐id是否相同，判断播放按钮的类型
-    let audioManager = wx.getBackgroundAudioManager();
+
     audioManager.onPause(() => {
-      clearInterval(timer)
       if (this.data.songDetail.id == appInstance.globalData.songIdPlaying) {
         this.setData({
           isPlay: false,
@@ -217,30 +294,14 @@ Page({
       appInstance.globalData.isMusicPlay = false;
     })
     audioManager.onPlay(() => {
-      clearInterval(timer)
       if (this.data.songDetail.id == appInstance.globalData.songIdPlaying)
         this.setData({
           isPlay: true,
         })
       appInstance.globalData.isMusicPlay = true;
-
-      // 音乐播放中监听播放事件，获取已经播放的时间
-
-       timer = setInterval(()=>{
-         let currentTime = this.totalTimeToRealTime(this.data.currentTimeByMSec+1000);
-         let distance = this.data.currentTimeByMSec / this.data.songDetail.dt * 450;
-        this.setData({
-          distance,
-          currentTimeByMSec:this.data.currentTimeByMSec+1000,
-          currentTime,
-        })
-        },1000)
-
     })
     // 在音乐正常播放完毕时，根据当前播放类型进行下一首歌曲的确定，并进行播放。
     audioManager.onEnded(() => {
-      clearInterval(timer)
-     // console.log(this.data.songDetail.id , appInstance.globalData.songIdPlaying,this.data.playStatus)
       if (this.data.songDetail.id == appInstance.globalData.songIdPlaying)
         this.setData({
           isPlay: false,
@@ -262,17 +323,31 @@ Page({
       }
       this.playSong();
     })
-    audioManager.onStop(()=>{
-      clearInterval(timer)
+    audioManager.onStop(() => {
       this.setData({
         isPlay: false,
       })
-    appInstance.globalData.isMusicPlay = false;
+      appInstance.globalData.isMusicPlay = false;
     })
-    // 
-    // audioManager.onTimeUpdate((res)=>{
-      
-    // })
+    audioManager.onTimeUpdate(() => {
+      // console.log(audioManager.currentTime);
+
+      this.setData({
+        totalTime:this.totalTimeToRealTime(audioManager.duration),
+        currentTime: this.totalTimeToRealTime(audioManager.currentTime ),
+        distance: audioManager.currentTime / audioManager.duration * 450,
+      })
+    })
+    audioManager.onWaiting(()=>{
+      wx.showLoading({
+        title: '加载中...',
+      })
+    })
+    audioManager.onCanplay(()=>{
+      wx.hideLoading({
+        success: (res) => {},
+      })
+    })
     // 获取当前播放方式
     if (appInstance.globalData.playStatus !== -1) {
       this.setData({
@@ -280,7 +355,6 @@ Page({
       })
     }
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

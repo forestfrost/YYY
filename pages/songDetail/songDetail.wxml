@@ -1,3 +1,4 @@
+<wxs module="test" src="./songDetail.wxs"></wxs> 
 <view class="songDetailContainer">
   <view class="author">{{songDetail.ar[0].name}}</view>
   <view class="circle"></view>
@@ -7,12 +8,14 @@
     <image class="musicImg {{isPlay?'musicImgRotate':''}}" src="{{songDetail.al.picUrl}}"></image>
   </view>
   <view class="progressControl">
-    <text>{{currentTime.minutes<10?'0'+currentTime.minutes:currentTime.minutes}}:{{currentTime.seconds<10?'0'+currentTime.seconds:currentTime.seconds}}</text>
+    <text id="leftTime">{{currentTime.minutes<10?'0'+currentTime.minutes:currentTime.minutes}}:{{currentTime.seconds<10?'0'+currentTime.seconds:currentTime.seconds}}</text>
     <!-- 总进度条 -->
-    <view class="barControl">
+    <view class="barControl" bindtap="handleTap">
       <!-- 实时进度条 -->
       <view class="audio-currentTime-Bar" style="width:{{distance}}rpx"></view>
-      <view class="ball" style="left:{{distance}}rpx"></view>
+      <!-- 当前播放时间点指示器 -->
+      <view class="ball" style="left:{{distance}}rpx;transform:scale{{canMove?'(2)':'(1)'}}" bindtouchstart="{{test.touchstart}}" bindtouchmove="{{test.touchmove}}" 
+      bindtouchend="{{test.touchend}}" ></view>
     </view>
     <text>{{totalTime.minutes<10?'0'+totalTime.minutes:totalTime.minutes}}:{{totalTime.seconds<10?'0'+totalTime.seconds:totalTime.seconds}}</text>
   </view>
