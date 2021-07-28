@@ -171,6 +171,15 @@ Page({
       })
     }
   },
+  // 进入搜索页
+  search:function(){
+    wx.navigateTo({
+      url: '/pages/search/search',
+      success:function(){
+        
+      }
+    })
+  },
   /** 生命周期函数--监听页面加载*/
   onLoad: async function (options) {
     if (!wx.getStorageSync('userInfo')) {

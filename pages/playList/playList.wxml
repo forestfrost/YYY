@@ -1,0 +1,41 @@
+<view class="playListContainer">
+  <view class="header">
+    <view class="headImg">
+      <image  src="{{playListInfo.coverImgUrl}}"></image>
+    </view>
+    <view class="des">
+      <view class="name">{{playListInfo.name}}</view>
+      <view class="creator">
+        <image src="{{playListInfo.creator.avatarUrl}}"/>
+        <view class="name">{{playListInfo.creator.nickname}}</view>
+        </view>
+    </view>
+  </view>
+  <view class="songContainer">
+    <view class="countBlock">
+      <view class="item">
+        <text class="iconfont icon-bofangcishu"></text>
+        <text class="num">{{playListInfo.playCount}}</text>
+      </view>
+      <view class="item">
+        <text class="iconfont icon-pingluncishu"></text>
+        <text class="num">{{playListInfo.commentCount}}</text>
+      </view>
+      <view class="item">
+        <text class="iconfont icon-fenxiang"></text>
+        <text class="num">{{playListInfo.shareCount}}</text>
+      </view>
+    </view>
+    <image class="img" src="/static/images/personal/arc.png"></image>
+    <scroll-view class="content" scroll-y enable-flex>
+      <view class="item" wx:for="{{playListInfo.tracks}}" wx:key="id" bindtap="playThisSong" data-info="{{item}}">
+        <image src="{{item.al.picUrl}}"></image>
+       <view class="des">
+          <text class="title">{{item.name}}</text>
+        <text class="singer">{{item.ar[0].name}} </text>
+       </view>
+        <text class="share iconfont icon-gengduo"></text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

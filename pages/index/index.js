@@ -37,6 +37,12 @@ Page({
       url: '/pages/recommendSong/recommendSong',
     })
   },
+  // 进入推荐歌单的详情页
+  enterThisPlayList:function(event){
+    wx.navigateTo({
+      url: `/pages/playList/playList?id=${event.currentTarget.dataset.id}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

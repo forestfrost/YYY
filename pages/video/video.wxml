@@ -2,8 +2,8 @@
   <!-- 头部区域 -->
   <view class="header">
     <image src="/static/img/video/video.jpg" class="left"></image>
-    <view class="search">
-      搜索视频
+    <view class="search" bindtap="search">
+      搜索音乐
     </view>
     <image src="/static/img/logo.png" class="right"></image>
   </view>

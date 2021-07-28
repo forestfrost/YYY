@@ -1,9 +1,11 @@
 const debounce = function(fn,delay){
   var timer = null;
   return function(){
+    var that =this;
+    var args = [...arguments]
     clearTimeout(timer);
-    setTimeout(() => {
-      fn.call(this,...arguments);
+    timer=setTimeout(() => {
+      fn.call(that,...args);
     }, delay);
   }
 }

@@ -1,0 +1,100 @@
+.playListContainer .header {
+  height: 300rpx;
+  width: 100%;
+  display: flex;
+  background-color: #a5a4a4;
+}
+.playListContainer .header .headImg {
+  flex: 0 0 30%;
+}
+.playListContainer .header .headImg image {
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  margin: 10% auto;
+  border-radius: 20rpx;
+}
+.playListContainer .header .des {
+  padding: 0 20rpx;
+  color: whitesmoke;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.playListContainer .header .des .name {
+  font-size: 26rpx;
+}
+.playListContainer .header .des .creator {
+  margin-top: 20rpx;
+  display: flex;
+}
+.playListContainer .header .des .creator image {
+  border-radius: 50%;
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+.playListContainer .header .des .creator .name {
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.playListContainer .songContainer {
+  position: relative;
+}
+.playListContainer .songContainer .img {
+  width: 100%;
+  height: 30rpx;
+  position: absolute;
+  top: 22rpx;
+}
+.playListContainer .songContainer .countBlock {
+  position: relative;
+  z-index: 101;
+  height: 50rpx;
+  padding: 0rpx 20rpx;
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  border: 1rpx solid #ededed;
+  background-color: #ededed;
+  border-radius: 20rpx;
+  margin-top: -40rpx;
+}
+.playListContainer .songContainer .countBlock .item {
+  width: 33%;
+  color: orange;
+  font-size: 26rpx;
+}
+.playListContainer .songContainer .content {
+  padding: 0 20rpx;
+  height: calc(100vh - 360rpx);
+}
+.playListContainer .songContainer .content .item {
+  display: flex;
+  margin: 15rpx 0;
+}
+.playListContainer .songContainer .content .item image {
+  margin: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+}
+.playListContainer .songContainer .content .item .des {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.playListContainer .songContainer .content .item .des text {
+  margin-left: 24rpx;
+  font-size: 28rpx;
+}
+.playListContainer .songContainer .content .item .share {
+  text-align: center;
+  line-height: 80rpx;
+  padding: 10rpx;
+  flex: 0 0 80rpx;
+}

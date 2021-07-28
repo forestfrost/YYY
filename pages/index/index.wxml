@@ -34,7 +34,7 @@
     <!-- 内容区域 -->
     <!-- scroll-view 必须设置高度，且若要使用flex布局需要开启flex，向哪个方向滚动需要设置scrooll-x 或 scroll-y -->
     <scroll-view class="scrollView-recommend" enable-flex scroll-x>
-      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="encodeId" wx:for-item="recommendListItem">
+      <view class="scrollItem" wx:for="{{recommendList}}" wx:key="encodeId" wx:for-item="recommendListItem" bindtap="enterThisPlayList" data-id="{{recommendListItem.id}}">
         <image src="{{recommendListItem.picUrl}}"></image>
         <text>{{recommendListItem.name}}</text>
       </view>

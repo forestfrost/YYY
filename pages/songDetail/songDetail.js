@@ -51,16 +51,11 @@ Page({
           wx.showToast({
             title: '暂时没有版权',
           })
-          let currentId = appInstance.globalData.songIdPlaying;
-          let songDetail = this.data.songList.find(item => item.id === currentId);
-          // let realTime=this.totalTimeToRealTime(songDetail.dt)
-          this.setData({
-            songDetail,
-            // totalTime:realTime,
-          })
           // 跳转到下一首
+         setTimeout(() => {
           this.getNextSong("next");
           this.playSong();
+         }, 600);
           return;
         }
       } catch (e) {
@@ -84,9 +79,11 @@ Page({
     }
     // 音乐播放时点击按钮，暂停播放
     if (!this.data.isPlay) {
+    //  console.log("111")
       audioManager.play();
       appInstance.globalData.isMusicPlay = true;
     } else {
+      //console.log("222")
       audioManager.pause();
       appInstance.globalData.isMusicPlay = false;
     }
@@ -216,8 +213,9 @@ Page({
     })
 
   },
+  // 点击进度条进行时间点跳转
   handleTap:function(event){
-    console.log(event)
+    //console.log(event)
     var audioManager = wx.getBackgroundAudioManager();
     let distance = event.detail.x-event.currentTarget.offsetLeft;
     let width =0;
@@ -241,12 +239,17 @@ Page({
   onLoad: function (options) {
     // 获取背景音乐控制器
     let audioManager = wx.getBackgroundAudioManager();
+    let width=0;
     // 重新进入页面时,得到当前播放的时长,并设置进度条
-    
+    var query=  wx.createSelectorQuery()
+    query.select('.barControl').boundingClientRect();
+    query.exec(res=>{
+      width = res[0].width;
+    })
     if(audioManager.currentTime)
     this.setData({
       currentTime: this.totalTimeToRealTime(audioManager.currentTime ),
-      distance: audioManager.currentTime / audioManager.duration * 450,
+      distance: audioManager.currentTime / audioManager.duration * width,
     })
     else{
       this.setData({
@@ -319,7 +322,7 @@ Page({
           break;
         case 2:
           audioManager.play();
-          return;
+         return;
       }
       this.playSong();
     })

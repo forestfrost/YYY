@@ -1,11 +1,11 @@
 <wxs module="test" src="./songDetail.wxs"></wxs> 
 <view class="songDetailContainer">
-  <view class="author">{{songDetail.ar[0].name}}</view>
+  <view class="author">{{songDetail.ar[0].name?songDetail.ar[0].name:songDetail.artists[0].name}}</view>
   <view class="circle"></view>
   <image class="needle {{isPlay &&'needleRotate'}}" src="../../static/images/song/needle.png"></image>
   <view class="descContainer">
     <image class="disc" src="/static/images/song/disc.png"></image>
-    <image class="musicImg {{isPlay?'musicImgRotate':''}}" src="{{songDetail.al.picUrl}}"></image>
+    <image class="musicImg {{isPlay?'musicImgRotate':''}}" src="{{songDetail.al.picUrl?songDetail.al.picUrl:songDetail.artists[0].img1v1Url}}"></image>
   </view>
   <view class="progressControl">
     <text id="leftTime">{{currentTime.minutes<10?'0'+currentTime.minutes:currentTime.minutes}}:{{currentTime.seconds<10?'0'+currentTime.seconds:currentTime.seconds}}</text>
@@ -28,11 +28,12 @@
   </view>
 </view>
 <!-- 遮罩层 ，显示音乐播放列表 -->
-<page-container show="{{show}}" round='{{true}}' overlay="{{true}}" duration='{{300}}' position="bottom" custom-style="height: 80%;z-index:2005;background-color:rgba(0,0,0,0.0)" close-on-slideDown='{{true}}' z-index="{{2005}}" overlay-style='background-color: rgba(0,0,0,0.8)'
+<page-container show="{{show}}" round='{{true}}' overlay="{{true}}" duration='{{300}}' position="bottom" custom-style="height: 60%;z-index:2005;background-color:rgba(0,0,0,0.0)" close-on-slideDown='{{true}}' z-index="{{2005}}" overlay-style='background-color: rgba(0,0,0,0.8)'
 bindafterleave="closePageContainer" bindclickoverlay="closePageContainer" bindbeforeenter="onBeforeEnter">
   <view class="songListContainer">
     <view class="pageContainerHeader">
       <text>当前播放</text>
+      <text style="font-size:20rpx;margin-left:50%">向下拖动关闭嗷~</text>
       <view class="handleBlock">
         <text class="iconfont {{playStatus==0?'icon-liebiaoxunhuan': (playStatus == 1 ? 'icon-suijibofang' : 'icon-hanhan-01-01')}} left" bindtap="changePlayStatus">
          <text style="font-size:24rpx;line-height:80rpx;height:80rpx;"> {{playStatus==0?'列表循环': (playStatus == 1 ? '随机播放' : '单曲循环')}}</text>

@@ -1,0 +1,118 @@
+.searchContainer {
+    box-sizing: border-box;
+    height    : 100%;
+    padding   : 20rpx 30rpx;
+
+    .header {
+        display        : flex;
+        justify-content: flex-start;
+
+        .searchInput {
+            font-size: 28rpx;
+            border-radius   : 10rpx;
+            height          : 45rpx;
+            flex            : 1;
+            background-color: #ededed;
+            margin          : 5rpx 10rpx;
+            display         : flex;
+           input{
+               width: 100%;
+           }
+            text {
+                height     : 45rpx;
+                line-height: 45rpx;
+            }
+        }
+
+        .cancle {
+            font-size: 26rpx;
+            flex         : 0 0 100rpx;
+            text-align   : center;
+            border       : 1rpx solid rgba(0, 0, 0, 0.3);
+            margin       : 5rpx auto;
+            border-radius: 12rpx;
+        }
+    }
+
+    .showSearchResultContainer{
+        .searchContent{
+            font-size: 28rpx;
+            height: 60rpx;
+            line-height: 60rpx;
+           color:#d43c33;
+            border-bottom: 1rpx solid rgba(0, 0, 0, 0.3) ;
+        }
+        .searchItem{
+            height: 80rpx;
+            line-height: 80rpx;
+            display: flex;
+            font-size: 26rpx;
+            .left{
+                margin-right: 10rpx;
+            }
+            .name{
+                flex: 1;
+                border-bottom:1rpx solid rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+
+    .historyHeader {
+        font-size: 28rpx;
+    }
+
+    .history {
+        padding        : 20rpx 30rpx;
+        height         : 120rpx;
+        display        : flex;
+        justify-content: flex-start;
+        flex-wrap      : wrap;
+        font-size: 26rpx;
+        text {
+            margin       : 10rpx 20rpx;
+            padding      : 0 20rpx;
+            height       : 45rpx;
+            line-height  : 45rpx;
+            text-align   : center;
+            //border       : 1rpx solid rgba(0, 0, 0, 0.3);
+            background-color: #ededed;
+            border-radius: 10rpx;
+
+        }
+    }
+
+    .hotSearch {
+        .hotSearchHeader {
+            font-size: 28rpx;
+            padding-bottom: 20rpx;
+            border-bottom : 1rpx solid #000;
+        }
+
+        .hotItemContainer {
+            display        : flex;
+            justify-content: space-between;
+            flex-wrap      : wrap;
+
+            .hotItem {
+                &:hover{
+                    color:orange;
+                    border:1rpx solid orange;
+                    border-radius: 16rpx;
+                }
+                font-size: 26rpx;
+                box-sizing : border-box;
+                width      : 50%;
+                height     : 80rpx;
+                line-height: 80rpx;
+                .index{
+                    font-size: 22rpx;
+                    margin-right: 10rpx;
+                   
+                }
+                .name{
+                    margin-right:10rpx;
+                }
+            }
+        }
+    }
+}
