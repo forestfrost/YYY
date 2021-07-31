@@ -4,12 +4,14 @@ import {
 } from '../../utils/request'
 // import {getCookie} from '../../utils/cookie'
 import {debounce} from '../../utils/debounce'
+const appInstance = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    appInstance:appInstance,
     videoGroupList: [], //视频标签列表
     navId: "", //导航的标识
     videoList: [], //某个id对应的视频列表,需要登录才能发起请求获得，需要使用到cookie
@@ -209,7 +211,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      appInstance,
+    })
   },
 
   /**

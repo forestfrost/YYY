@@ -1,0 +1,8 @@
+<import src="../../template/myTemplate/myTemplate.wxml"/>
+<view class="otherContainer">
+  <view class="otherTitle">测试使用模板</view>
+  <template is="myTmp" data="{{...userInfo}}"></template>
+
+  <view class="otherTitle">测试获取用户唯一标识openId</view>
+  <button bindtap="handleGetOpenId">获取</button>
+</view>

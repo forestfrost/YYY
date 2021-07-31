@@ -114,7 +114,6 @@ transform: translateY(-50%);
   width: 400rpx;
   text-align:center;
   font-size: 28rpx;
-  
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

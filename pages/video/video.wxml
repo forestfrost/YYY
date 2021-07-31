@@ -42,8 +42,10 @@
         </view>
       </view>
     </view>
+    <view style="height:80rpx;width:100%"></view>
   </scroll-view>
   <view wx:else>
     <text class="err"> 暂无推荐视频，请稍后再试</text>
   </view>
+  <PlayCom wx:if="{{appInstance.globalData.songList.length?true:false}}" ></PlayCom>
 </view>

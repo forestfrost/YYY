@@ -82,5 +82,6 @@
       </view>
     </view>
   </view>
-
+  <view style="height:80rpx;width:100%"></view>
+  <PlayCom wx:if="{{appInstance.globalData.songList.length?true:false}}" ></PlayCom>
 </view>

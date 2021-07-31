@@ -1,1 +1,182 @@
-/* components/PlayCom/PlayCom.wxss */
+@font-face {
+  font-family: "iconfont";
+  /* Project id 2678900 */
+  src: url('//at.alicdn.com/t/font_2678900_7sz7nfub3fb.woff2?t=1627452055375') format('woff2'), url('//at.alicdn.com/t/font_2678900_7sz7nfub3fb.woff?t=1627452055375') format('woff'), url('//at.alicdn.com/t/font_2678900_7sz7nfub3fb.ttf?t=1627452055375') format('truetype');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-bofangcishu:before {
+  content: "\e60b";
+}
+.icon-pingluncishu:before {
+  content: "\e61c";
+}
+.icon-fenxiang:before {
+  content: "\e612";
+}
+.icon-sousuo:before {
+  content: "\e623";
+}
+.icon-02:before {
+  content: "\e602";
+}
+.icon-aixin:before {
+  content: "\e60f";
+}
+.icon-delete:before {
+  content: "\e630";
+}
+.icon-qingkong:before {
+  content: "\e611";
+}
+.icon-hanhan-01-01:before {
+  content: "\e6ae";
+}
+.icon-liebiaoxunhuan:before {
+  content: "\e6a2";
+}
+.icon-16:before {
+  content: "\e610";
+}
+.icon-shangyishoushangyige:before {
+  content: "\e78a";
+}
+.icon-xiayigexiayishou:before {
+  content: "\e7a5";
+}
+.icon-gedan1:before {
+  content: "\e637";
+}
+.icon-suijibofang:before {
+  content: "\e6a0";
+}
+.icon-zantingtingzhi:before {
+  content: "\e65a";
+}
+.icon-xihuan:before {
+  content: "\e614";
+}
+.icon-gengduo:before {
+  content: "\e64c";
+}
+.icon-pinglun:before {
+  content: "\e62f";
+}
+.icon-haoyou1:before {
+  content: "\e783";
+}
+.icon-gexingzhuangban:before {
+  content: "\e655";
+}
+.icon-xiaoxi1:before {
+  content: "\e695";
+}
+.icon-biaoqiankuozhan_tuijian-126:before {
+  content: "\eaf6";
+}
+.icon-haoyou:before {
+  content: "\e678";
+}
+.icon-huiyuan_huaban1:before {
+  content: "\e619";
+}
+.icon-shouye:before {
+  content: "\e60e";
+}
+.icon-paihangbang:before {
+  content: "\e782";
+}
+.icon-diantai:before {
+  content: "\e636";
+}
+.icon-zhibo:before {
+  content: "\e74f";
+}
+.icon-gedan:before {
+  content: "\e600";
+}
+.playContainer {
+  background-color: whitesmoke;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+.playContainer .songInfo {
+  flex: 0 0 70%;
+  height: 80rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 20rpx;
+}
+.playContainer .status {
+  flex: 0 0 15%;
+}
+.playContainer .songList {
+  flex: 0 0 15%;
+}
+.playContainer .text {
+  display: block;
+  margin: 0 auto;
+  line-height: 80rpx;
+  font-size: 46rpx;
+}
+.songListContainer {
+  box-sizing: border-box;
+  border-radius: 20rpx;
+  background-color: white;
+  width: 90%;
+  margin: 20rpx auto;
+  padding: 30rpx;
+  position: relative;
+}
+.songListContainer .pageContainerHeader .handleBlock {
+  display: flex;
+  justify-content: space-between;
+}
+.songListContainer .pageContainerHeader .handleBlock .left {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 36rpx;
+}
+.songListContainer .pageContainerHeader .handleBlock .right {
+  height: 80rpx;
+  line-height: 80rpx;
+  flex: 0 0 40%;
+  display: flex;
+  justify-content: flex-end;
+}
+.songListContainer .pageContainerHeader .handleBlock .right .clear {
+  display: block;
+  margin-left: 20rpx;
+}
+.songListContainer .songItemContainer {
+  height: calc(60vh - 80rpx);
+}
+.songListContainer .songItemContainer .songItem {
+  display: flex;
+  justify-content: space-between;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.songListContainer .songItemContainer .songItem .songName {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: block;
+  width: 60%;
+}
+.songListContainer .songItemContainer .playing {
+  background-color: rgba(248, 248, 248, 0.733);
+  color: rgba(206, 67, 67, 0.733);
+}

@@ -1,13 +1,13 @@
 import {
   axios
 } from "../../utils/request";
-
-
+let appInstance = getApp();
 let startY = 0; //手指起始坐标y
 let moveY = 0; //手指移动中的坐标y
 let moveDistance = 0; //手指移动的距离
 Page({
   data: {
+    appInstance:appInstance,
     coverTransform: "translateY(0rpx)",
     coveTransition: "0",
     userInfo: null, //登录用户
@@ -94,7 +94,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      appInstance,
+    })
   },
 
   /**

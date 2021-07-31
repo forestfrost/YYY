@@ -1,11 +1,13 @@
 // pages/index/index.js
 import {axios} from '../../utils/request'
+let appInstance = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+   appInstance:appInstance,
    banners:[],//轮播图
    recommendList:[],//推荐歌单
    topList:[],//排行榜
@@ -47,6 +49,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   axios("get","/banner",{type:2}).then(data=>{
      this.setData({
        banners:data.banners
@@ -85,7 +88,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      appInstance,
+    })
   },
 
   /**

@@ -1,2 +1,44 @@
-<!--components/PlayCom/PlayCom.wxml-->
-<text>components/PlayCom/PlayCom.wxml</text>
+<!-- 这是音乐播放条的组件 -->
+<view class="playContainer">
+  <!-- <view class="songInfo"  bindtap="enterTheSongDetail">
+    {{songDetail.name}}
+  </view> -->
+  <swiper class="songInfo" bindtap="enterTheSongDetail"
+  circular="{{true}}" current="{{currentIndex}}" bindchange="changePlayingSong">
+  <swiper-item wx:for="{{songList}}" wx:key="id">{{item.name}}</swiper-item>
+  </swiper>
+  <view class="status" bindtap="manageSongPlay">
+    <text class="iconfont icon-zantingtingzhi text" wx:if="{{isPlay}}"></text>
+    <text class="iconfont icon-16 text" wx:else></text>
+    
+  </view>
+  <view class="songList">
+    <text class="iconfont icon-gedan1 text" bindtap="showSongList"></text>
+  </view>
+</view>
+<page-container show="{{show}}" round='{{true}}' overlay="{{true}}" duration='{{300}}' position="bottom" custom-style="height: 75%;z-index:2005;background-color:rgba(0,0,0,0.0)" close-on-slideDown='{{true}}' z-index="{{2005}}" overlay-style='background-color: rgba(0,0,0,0.8)'
+bindafterleave="closePageContainer" bindclickoverlay="closePageContainer" bindbeforeenter="onBeforeEnter"
+
+>
+  <view class="songListContainer">
+    <view class="pageContainerHeader">
+      <text>当前播放</text>
+      <text style="font-size:20rpx;margin-left:50%">向下拖动关闭嗷~</text>
+      <view class="handleBlock">
+        <text class="iconfont {{playStatus==0?'icon-liebiaoxunhuan': (playStatus == 1 ? 'icon-suijibofang' : 'icon-hanhan-01-01')}} left" bindtap="changePlayStatus">
+         <text style="font-size:24rpx;line-height:80rpx;height:80rpx;"> {{playStatus==0?'列表循环': (playStatus == 1 ? '随机播放' : '单曲循环')}}</text>
+        </text>
+        <view class="right">
+        </view>
+      </view>
+    </view>
+    <scroll-view scroll-y class="songItemContainer" enhanced="{{true}}" show-scrollbar="{{false}}" scroll-into-view="scroll{{songDetail.id}}">
+      <view class="songItem {{songDetail.id === item.id?'playing':''}}" wx:for="{{songList}}" wx:key="id" bindtap="playThisSongInList" data-info="{{item}}" 
+      id="{{'scroll'+item.id}}">
+        <text class="songName">{{item.name}}</text>
+        <!-- <text class="iconfont {{item.id}}"></text> -->
+      </view>
+     
+    </scroll-view>
+  </view>
+</page-container>

@@ -99,7 +99,6 @@ Page({
     // 上一首
     if (type === "prev") {
       currentIndex = (currentIndex - 1 + songList.length) % songList.length;
-      // console.log(currentIndex)
     }
     // 下一首
     else if (type === "next") {
@@ -121,6 +120,7 @@ Page({
       totalTime: realTime,
       song: null,
     })
+    appInstance.globalData.songDetail = songList[currentIndex];
   },
   // 切换歌曲的回调函数
   handleSwitch: function (event) {
@@ -151,6 +151,7 @@ Page({
       totalTime: realTime,
       song: null,
     })
+    appInstance.globalData.songDetail = songDetail;
     this.playSong();
   },
   // 关闭遮蔽层
@@ -261,6 +262,7 @@ Page({
     const eventChannel = this.getOpenerEventChannel()
     var flag = false;
     eventChannel.on('songDetailInfo', (data) => {
+      appInstance.globalData.songList=data.songList;
       wx.setNavigationBarTitle({
         title: data.info.name
       });
@@ -273,7 +275,8 @@ Page({
       this.setData({
         songDetail: data.info,
         totalTime: realTime,
-        songList: data.songList
+        songList: data.songList,
+        song:data.song
       })
       if (data.info.id == appInstance.globalData.songIdPlaying) {
         // 当单曲循环或者该歌曲未播放完毕时
@@ -297,6 +300,7 @@ Page({
       appInstance.globalData.isMusicPlay = false;
     })
     audioManager.onPlay(() => {
+      appInstance.globalData.songDetail=this.data.songDetail;
       if (this.data.songDetail.id == appInstance.globalData.songIdPlaying)
         this.setData({
           isPlay: true,
@@ -383,7 +387,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    appInstance.globalData.playStatus = this.data.playStatus;
+    const eventChannel = this.getOpenerEventChannel();
+    eventChannel.emit("getSong",this.data.song);
   },
 
   /**

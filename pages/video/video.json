@@ -1,5 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "PlayCom":"../../components/PlayCom/PlayCom"
+  },
   "navigationBarTitleText": "视频",
   "enablePullDownRefresh": true
+  
 }
