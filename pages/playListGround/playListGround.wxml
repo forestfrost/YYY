@@ -1,0 +1,23 @@
+<view class="playListGround">
+  <scroll-view scroll-x enable-flex class="navScrollContainer" scroll-with-animation="{{true}}" scroll-into-view="{{'scroll'+navId}}">
+    <view id="{{'scroll'+item.id}}" class="navItem" wx:for="{{categoryList}}" wx:key="id">
+      <view class="navContent {{navId===item.id?'active':''}}" id="{{item.id}}" data-name="{{item.name}}" bindtap="changeNav">
+        {{item.name}}
+      </view>
+    </view>
+  </scroll-view>
+  <scroll-view class="listContainer" scroll-y enable-flex bindscrolltolower="handleLoadMore">
+    <view class="item" wx:for="{{playList.playlists}}" wx:key="id" bindtap="enterThisPlayList" data-id="{{item.id}}">
+      <view class="img">
+        <image src="{{item.coverImgUrl}}"></image>
+        <view class="num">
+          <text class="iconfont icon-16"></text>
+          <text>{{item.playCount}}</text>
+        </view>
+      </view>
+      <view class="des">
+        {{item.description}}
+      </view>
+    </view>
+  </scroll-view>
+</view>

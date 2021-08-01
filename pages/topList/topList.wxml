@@ -1,0 +1,20 @@
+<view class="topListContainer">
+  <view class="header">
+    <image src="/static/images/logo.png"></image>
+    <text class="name">官方榜</text>
+  </view>
+  <view class="listContainer">
+    <view class="item" wx:for="{{topList}}" wx:key="id" data-id="{{item.id}}" bindtap="enterThisPlayList">
+      <view class="img">
+        <view class="name">{{item.name}}</view>
+        <image src="{{item.coverImgUrl}}"></image>
+      </view>
+      <view class="track">
+        <view class="song" wx:for="{{item.list}}" wx:for-item="songItem" wx:for-index="songIndex"
+          wx:key="id">
+          <text>{{songIndex+"    "}}{{songItem.name}}--{{songItem.name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

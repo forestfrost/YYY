@@ -23,6 +23,7 @@ Page({
        }
      })
    },
+  //  进入每日推荐页面
   handleToRecommendSong:function(){
     if(!wx.getStorageSync('cookie')){
       wx.showToast({
@@ -43,6 +44,17 @@ Page({
   enterThisPlayList:function(event){
     wx.navigateTo({
       url: `/pages/playList/playList?id=${event.currentTarget.dataset.id}`,
+    })
+  },
+  // 进入歌单页面
+  handleToPlayListGround:function(){
+    wx.navigateTo({
+      url: `/pages/playListGround/playListGround`,
+    })
+  },
+  handleToTopList:function(){
+    wx.navigateTo({
+      url: `/pages/topList/topList`,
     })
   },
   /**

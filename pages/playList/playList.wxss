@@ -64,7 +64,7 @@
   margin-top: -40rpx;
 }
 .playListContainer .songContainer .countBlock .item {
-  width: 33%;
+  flex:1;
   color: orange;
   font-size: 26rpx;
 }

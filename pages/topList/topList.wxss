@@ -1,0 +1,66 @@
+.topListContainer {
+  width: 100%;
+  padding: 20rpx;
+}
+.topListContainer .header {
+  display: flex;
+  height: 50rpx;
+}
+.topListContainer .header image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.topListContainer .header .name {
+  margin-left: 16rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+.topListContainer .listContainer .item {
+  width: 90%;
+  height: 220rpx;
+  border-radius: 18rpx;
+  margin: 20rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.topListContainer .listContainer .item .img {
+  display: flex;
+  flex-direction: column;
+  width: 240rpx;
+}
+.topListContainer .listContainer .item .img .name {
+  text-align: center;
+  font-weight: 400;
+  font-size: 32rpx;
+}
+.topListContainer .listContainer .item .img image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 16rpx;
+  display: block;
+  margin: 20rpx auto;
+}
+.topListContainer .listContainer .item .track {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.topListContainer .listContainer .item .track .song {
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.topListContainer .listContainer .item .track .song text {
+  width: 400rpx;
+  font-size: 22rpx;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.topListContainer .listContainer .item:nth-of-type(even) {
+  background-color: skyblue;
+}
+.topListContainer .listContainer .item:nth-of-type(odd) {
+  background-color: pink;
+}

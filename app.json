@@ -1,6 +1,6 @@
 {
   "pages": [
-
+   
     "pages/index/index",
     "pages/playList/playList",
     "pages/search/search",
@@ -9,7 +9,9 @@
     "pages/video/video",
     "pages/personal/personal",
     "pages/login/login",
-    "pages/other/other"
+    "pages/other/other",
+    "pages/playListGround/playListGround",
+    "pages/topList/topList"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -148,7 +148,7 @@ Page({
   loadMore:async function(){
     let videoList = await axios("get", `/video/group`, {
       id:this.data.navId,
-      offset:this.data.offset
+      offset:this.data.offset+1
     }, {
       cookie: wx.getStorageSync('cookie')
     })

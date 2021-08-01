@@ -1,0 +1,54 @@
+.playListGround .navScrollContainer {
+  display: flex;
+  white-space: nowrap;
+  height: 80rpx;
+}
+.playListGround .navScrollContainer .navItem {
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.playListGround .navScrollContainer .navItem .active {
+  border-bottom: #d43c33 solid 2rpx;
+}
+.playListGround .listContainer {
+  width: 100%;
+  height: calc(100vh - 80rpx);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.playListGround .listContainer .item {
+  margin: 20rpx 0;
+  width: 30%;
+}
+.playListGround .listContainer .item .img {
+  position: relative;
+}
+.playListGround .listContainer .item .img image {
+  border-radius: 10rpx;
+  width: 210rpx;
+  height: 210rpx;
+  display: block;
+  margin: 10rpx auto;
+}
+.playListGround .listContainer .item .img .num {
+  background-color: rgba(158, 157, 157, 0.719);
+  position: absolute;
+  right: 14rpx;
+  top: 10rpx;
+  font-size: 20rpx;
+  color: white;
+}
+.playListGround .listContainer .item .img .num text {
+  padding: 0 3rpx;
+}
+.playListGround .listContainer .item .des {
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical ;
+  -webkit-line-clamp: 2;
+}
